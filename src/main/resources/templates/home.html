@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Salesforce Switch</title>
+
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial;
+            background-color: #f5f5f5;
+        }
+
+        h2 {
+            color: orange;
+        }
+
+        .container {
+            margin-top: 100px;
+        }
+
+        button {
+            background-color: orange;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background-color: darkorange;
+        }
+
+        .section {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Salesforce Switch</h2>
+
+    <p><b>Logged in as:</b></p>
+
+    <p><b>Username:</b> <span th:text="${username}"></span></p>
+    <p><b>Organisation:</b> <span th:text="${org}"></span></p>
+
+    <br>
+
+    <!--  BUTTONS -->
+    <a href="/logout">
+        <button>Logout</button>
+    </a>
+
+    <a href="/metadata">
+        <button>Get Metadata</button>
+    </a>
+
+    <!--  ACCOUNTS -->
+    <div class="section" th:if="${accounts != null}">
+        <h3>Accounts</h3>
+        <ul>
+            <li th:each="acc : ${accounts}">
+                <span th:text="${acc.Name}"></span>
+            </li>
+        </ul>
+    </div>
+
+    <!--  VALIDATION RULES -->
+    <div class="section" th:if="${rules != null}">
+        <h3>Validation Rules</h3>
+        <ul>
+            <li th:each="rule : ${rules}">
+                <span th:text="${rule.ValidationName}"></span> -
+                <span th:text="${rule.ErrorMessage}"></span>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Deployment Result</title>
+
+    <style>
+        body { text-align: center; font-family: Arial; }
+
+        .box {
+            background: #e6f2ff;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        .success {
+            color: green;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2 class="success" th:text="${message}"></h2>
+
+<div class="box">
+
+    <h3>Updated Rules</h3>
+
+    <div th:each="r : ${updatedRules}">
+        <span th:text="${r['ruleId']}"></span>
+<span th:text="${r['status']}"></span>
+        <br><br>
+    </div>
+
+</div>
+
+<a href="/metadata">⬅ Go Back</a>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Salesforce Switch</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 80px;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            color: #e67e22;
+        }
+
+        .container {
+            width: 600px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #ccc;
+        }
+
+        .info-box {
+            background-color: #d9edf7;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        .donate-box {
+            background-color: #fcf8e3;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        select {
+            padding: 8px;
+            margin: 10px;
+        }
+
+        button {
+            background-color: #e67e22;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #cf711f;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Salesforce Switch</h1>
+
+    <p>
+        This tool provides an interface to enable/disable components in your Salesforce Org
+        (Workflows, Triggers, Validation Rules).
+    </p>
+
+   
+
+    <label>Environment:</label>
+    <select id="env">
+        <option value="login">Production</option>
+        <option value="test">Sandbox</option>
+    </select>
+
+    <br>
+
+    <button onclick="login()">LOGIN</button>
+
+</div>
+
+<script>
+function login() {
+    let env = document.getElementById("env").value;
+    window.location.href = "/login?env=" + env;
+}
+</script>
+
+</body>
+</html>

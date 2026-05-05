@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Salesforce Switch</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+        }
+
+        .header {
+            color: orange;
+            font-size: 28px;
+            margin-top: 20px;
+        }
+
+        .box {
+            background: #e6f2ff;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .enable {
+            background: green;
+            color: white;
+        }
+
+        .disable {
+            background: red;
+            color: white;
+        }
+
+        .deploy {
+            background: skyblue;
+            color: white;
+             padding: 12px 25px;   
+             font-size: 16px; 
+        }
+
+        .rollback {
+            background: #ffcc99;
+            color: white;
+             padding: 12px 25px;   
+             font-size: 16px; 
+        }
+
+        .toggle {
+            padding: 5px 10px;
+            border-radius: 15px;
+            border: none;
+            cursor: pointer;
+            width: 60px;
+        }
+
+        .on {
+            background: #007bff;
+            color: white;
+        }
+
+        .off {
+            background: orange;
+            color: white;
+        }
+
+        .row {
+            margin: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="header">Salesforce Switch</div>
+
+<div class="box">
+
+    <h3>Validation Rules</h3>
+
+   
+   <form action="/deploy" method="post" style="display:inline-block;">
+
+    <div th:each="rule : ${rules}">
+
+        <span th:text="${rule.ValidationName}"></span>
+
+        <button type="button" class="toggle off" onclick="toggle(this)">
+            OFF
+        </button>
+
+        <input type="hidden" name="status" value="OFF"/>
+        <input type="hidden" name="ruleId" th:value="${rule.Id}" />
+
+        <br><br>
+    </div>
+
+    <button type="submit" class="deploy">DEPLOY CHANGES</button>
+
+</form>
+
+<!-- ✅ INLINE BLOCK + GAP -->
+<form action="/rollback" method="post" style="display:inline-block; margin-left:10px;">
+    <button type="submit" class="rollback">ROLLBACK TO ORIGINAL</button>
+</form>
+
+    <br><br>
+    
+    <button class="btn enable" onclick="enableAll()">ENABLE ALL</button>
+    <button class="btn disable" onclick="disableAll()">DISABLE ALL</button>
+    
+    <br><br>
+
+</div>
+
+<script>
+
+function toggle(btn) {
+    let input = btn.parentElement.querySelector("input[name='status']");
+
+    if (btn.innerText === "OFF") {
+        btn.innerText = "ON";
+        btn.classList.remove("off");
+        btn.classList.add("on");
+        input.value = "ON";
+    } else {
+        btn.innerText = "OFF";
+        btn.classList.remove("on");
+        btn.classList.add("off");
+        input.value = "OFF";
+    }
+}
+
+function enableAll() {
+    document.querySelectorAll(".toggle").forEach(btn => {
+        btn.innerText = "ON";
+        btn.classList.remove("off");
+        btn.classList.add("on");
+        btn.nextElementSibling.value = "ON";
+    });
+}
+
+function disableAll() {
+    document.querySelectorAll(".toggle").forEach(btn => {
+        btn.innerText = "OFF";
+        btn.classList.remove("on");
+        btn.classList.add("off");
+        btn.nextElementSibling.value = "OFF";
+    });
+}
+
+</script>
+
+</body>
+</html>
