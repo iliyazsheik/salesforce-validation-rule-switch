@@ -43,6 +43,17 @@ This project allows users to:
 ##  Note
 Salesforce credentials are not included for security reasons.
 
+##  Important Note
+
+This project is configured to work with specific validation rules:
+-> Name_Not_Empty
+-> Phone_10_Digits
+-> Revenue_Positive
+-> Industry_Not_Empty
+
+If these rules are not present in your Salesforce org, 
+please create them manually or update the code to match your validation rule names.
+
 ##  Author
 Sheik Iliyaz
 GitHub: https://github.com/iliyazsheik
