@@ -26,9 +26,9 @@ public class AuthController {
 	
 	Map<String, Boolean> originalStatus = new HashMap<>();
 
-    private final String CLIENT_ID = "YOUR_CLIENT_ID";
-    private final String CLIENT_SECRET = "YOUR_CLIENT_SECRET";
-    private final String REDIRECT_URI = "http://localhost:8080/callback";
+   private final String CLIENT_ID = System.getenv("CLIENT_ID");
+   private final String CLIENT_SECRET = System.getenv("CLIENT_SECRET");
+   private final String REDIRECT_URI = "https://salesforce-validation-rule-switch-1.onrender.com/callback";
     private String accessToken;
     private String instanceUrl;
     Map<String, Map<String, Object>> metadataMap = new HashMap<>();
